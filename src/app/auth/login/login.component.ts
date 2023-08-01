@@ -32,7 +32,7 @@ export class LoginComponent {
         tap(user => {
           console.log("DATO API ", user);
           this.store.dispatch(login({user}));
-          this.router.navigateByUrl('/courses/list/courses');
+          this.router.navigateByUrl('/courses/list-courses');
           
         })
       ).subscribe( {
