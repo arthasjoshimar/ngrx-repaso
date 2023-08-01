@@ -27,7 +27,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     CommonModule,
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers, { metaReducers: fromAuth.metaReducers })
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer)
   ],
   providers: [
     AuthService

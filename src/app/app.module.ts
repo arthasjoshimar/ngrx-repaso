@@ -9,18 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module.module';
-
-const routes: Routes = [
-  {
-    path: 'login',
-    loadChildren:  () => import('./auth/auth.module').then( m => m.AuthModule)
-  },
-  {
-    path: '**',
-    redirectTo: '/'
-  }
-];
-
+import * as fromApp from './reducers';
 
 
 @NgModule({
@@ -29,13 +18,13 @@ const routes: Routes = [
   ],
   imports: [
     MaterialModuleModule,
-    AuthModule,
-    RouterModule.forRoot(routes),    
+    AuthModule,    
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // StoreModule.forFeature(fromApp.appFeatureKey, fromApp.reducers, { metaReducers: fromApp.metaReducers })
   ],
   providers: [],
   bootstrap: [AppComponent]

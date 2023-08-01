@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import { AuthService } from '../auth.service';
 import { noop, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { login } from '../auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +15,10 @@ export class LoginComponent {
   form: UntypedFormGroup;
 
   constructor(private fb: UntypedFormBuilder,
-              private authService: AuthService){
-    this.form = fb.group({
+              private authService: AuthService,
+              private store: Store,
+              private router: Router){
+    this.form = this.fb.group({
       email: ['test@angular-university.io', [Validators.required]],
       password: ['test', [Validators.required]]
     });
@@ -26,6 +31,8 @@ export class LoginComponent {
       .pipe(
         tap(user => {
           console.log("DATO API ", user);
+          this.store.dispatch(login({user}));
+          this.router.navigateByUrl('/courses/list/courses');
           
         })
       ).subscribe( {

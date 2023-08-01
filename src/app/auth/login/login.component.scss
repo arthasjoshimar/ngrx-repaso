@@ -1,4 +1,23 @@
-.login-form {
+.container {   
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    background-color: bisque;
+}
+
+.login-form{
+    background-color: #181c1f;
+    border: solid;
+    border-color: #202931;
+    padding: 20px;
+    border-radius: 10%;
+    width: 200px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.button-form {
+    width: 100px;
 }
