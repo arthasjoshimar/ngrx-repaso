@@ -8,6 +8,8 @@ import { MaterialModuleModule } from '../material-module.module';
 import {ReactiveFormsModule} from "@angular/forms";
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth.effects';
 
 
 const routes: Routes = [
@@ -27,7 +29,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     CommonModule,
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer)
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   providers: [
     AuthService
